@@ -5,11 +5,11 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarCollege", "StarCollege.csproj", "{656DE71A-5EE6-475E-8B57-F7280AFEB2E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarCollege.DataAccess", "..\StarCollege.DataAccess\StarCollege.DataAccess.csproj", "{C3DCF3E9-26F6-4F0F-AD16-31C8A7E2B020}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarCollege.Models", "..\StarCollege.Models\StarCollege.Models.csproj", "{C118360E-4EAE-4502-92D6-718F5045C480}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarCollege.Models", "..\StarCollege.Models\StarCollege.Models.csproj", "{C118360E-4EAE-4502-92D6-718F5045C480}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarCollege.Utility", "..\StarCollege.Utility\StarCollege.Utility.csproj", "{F8846DC0-39CD-4158-8D79-66BDD248C46B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarCollege.Utility", "..\StarCollege.Utility\StarCollege.Utility.csproj", "{F8846DC0-39CD-4158-8D79-66BDD248C46B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarCollege.DataAccess", "..\StarCollege.DataAccess\StarCollege.DataAccess.csproj", "{72F6C120-3B85-4DB9-BAD0-A22866CB46F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{656DE71A-5EE6-475E-8B57-F7280AFEB2E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{656DE71A-5EE6-475E-8B57-F7280AFEB2E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{656DE71A-5EE6-475E-8B57-F7280AFEB2E1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C3DCF3E9-26F6-4F0F-AD16-31C8A7E2B020}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3DCF3E9-26F6-4F0F-AD16-31C8A7E2B020}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3DCF3E9-26F6-4F0F-AD16-31C8A7E2B020}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3DCF3E9-26F6-4F0F-AD16-31C8A7E2B020}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C118360E-4EAE-4502-92D6-718F5045C480}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C118360E-4EAE-4502-92D6-718F5045C480}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C118360E-4EAE-4502-92D6-718F5045C480}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{F8846DC0-39CD-4158-8D79-66BDD248C46B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8846DC0-39CD-4158-8D79-66BDD248C46B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8846DC0-39CD-4158-8D79-66BDD248C46B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72F6C120-3B85-4DB9-BAD0-A22866CB46F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72F6C120-3B85-4DB9-BAD0-A22866CB46F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F6C120-3B85-4DB9-BAD0-A22866CB46F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72F6C120-3B85-4DB9-BAD0-A22866CB46F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
