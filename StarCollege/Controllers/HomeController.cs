@@ -15,7 +15,7 @@ namespace StarCollege.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Subject");
         }
 
         public IActionResult Privacy()

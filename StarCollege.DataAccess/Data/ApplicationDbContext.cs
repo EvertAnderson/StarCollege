@@ -13,10 +13,10 @@ namespace StarCollege.DataAccess.Data
         public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
         //Base Tables
+        public DbSet<Subject> Subject { get; set; }
         public DbSet<Course> Course { get; set; }
         public DbSet<Teacher> Teacher { get; set; }
         public DbSet<Student> Student { get; set; }
-        public DbSet<Subject> Subject { get; set; }
 
         //Merged Tables
         public DbSet<Classroom> Classroom { get; set; }
