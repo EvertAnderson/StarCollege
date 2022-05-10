@@ -9,20 +9,6 @@ namespace StarCollege.DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Course",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Credits = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Course", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Student",
                 columns: table => new
                 {
@@ -34,6 +20,20 @@ namespace StarCollege.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Student", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Subject",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Department = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Subject", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -52,22 +52,22 @@ namespace StarCollege.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Subject",
+                name: "Course",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CourseId = table.Column<int>(type: "int", nullable: false),
+                    SubjectId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Department = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Credits = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Subject", x => x.Id);
+                    table.PrimaryKey("PK_Course", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Subject_Course_CourseId",
-                        column: x => x.CourseId,
-                        principalTable: "Course",
+                        name: "FK_Course_Subject_SubjectId",
+                        column: x => x.SubjectId,
+                        principalTable: "Subject",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -137,6 +137,11 @@ namespace StarCollege.DataAccess.Migrations
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Course_SubjectId",
+                table: "Course",
+                column: "SubjectId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Enrollment_ClassroomId",
                 table: "Enrollment",
                 column: "ClassroomId");
@@ -145,20 +150,12 @@ namespace StarCollege.DataAccess.Migrations
                 name: "IX_Enrollment_StudentId",
                 table: "Enrollment",
                 column: "StudentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Subject_CourseId",
-                table: "Subject",
-                column: "CourseId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Enrollment");
-
-            migrationBuilder.DropTable(
-                name: "Subject");
 
             migrationBuilder.DropTable(
                 name: "Classroom");
@@ -171,6 +168,9 @@ namespace StarCollege.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Teacher");
+
+            migrationBuilder.DropTable(
+                name: "Subject");
         }
     }
 }

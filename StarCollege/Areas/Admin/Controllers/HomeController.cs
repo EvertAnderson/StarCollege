@@ -1,22 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StarCollege.DataAccess.Repository.IRepository;
 using StarCollege.Models;
 using System.Diagnostics;
 
-namespace StarCollege.Controllers
+namespace StarCollege.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            //return RedirectToAction("Index", "Subject");
-            return View();
+            IEnumerable<Subject> subjectList = _unitOfWork.Subject.GetAll();
+
+            return View(subjectList);
         }
 
         public IActionResult Privacy()

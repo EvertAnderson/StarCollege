@@ -12,8 +12,8 @@ namespace StarCollege.Models
     {
         [Key]
         public int Id { get; set; }
-        public int CourseId { get; set; }
         public string Name { get; set; }
         public string Department { get; set; }
+        public ICollection<Course> Courses { get; set; }
     }
 }

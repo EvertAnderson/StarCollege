@@ -11,7 +11,7 @@ using StarCollege.DataAccess.Data;
 namespace StarCollege.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220508010305_BaseDataBase1.0")]
+    [Migration("20220510063518_BaseDataBase1.0")]
     partial class BaseDataBase10
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,7 +65,12 @@ namespace StarCollege.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SubjectId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SubjectId");
 
                     b.ToTable("Course");
                 });
@@ -128,9 +133,6 @@ namespace StarCollege.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Department")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -140,8 +142,6 @@ namespace StarCollege.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
 
                     b.ToTable("Subject");
                 });
@@ -189,6 +189,15 @@ namespace StarCollege.DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("StarCollege.Models.Course", b =>
+                {
+                    b.HasOne("StarCollege.Models.Subject", null)
+                        .WithMany("Courses")
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("StarCollege.Models.Enrollment", b =>
                 {
                     b.HasOne("StarCollege.Models.Classroom", null)
@@ -204,15 +213,6 @@ namespace StarCollege.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StarCollege.Models.Subject", b =>
-                {
-                    b.HasOne("StarCollege.Models.Course", null)
-                        .WithMany("Subjects")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("StarCollege.Models.Classroom", b =>
                 {
                     b.Navigation("Enrollments");
@@ -221,13 +221,16 @@ namespace StarCollege.DataAccess.Migrations
             modelBuilder.Entity("StarCollege.Models.Course", b =>
                 {
                     b.Navigation("Classrooms");
-
-                    b.Navigation("Subjects");
                 });
 
             modelBuilder.Entity("StarCollege.Models.Student", b =>
                 {
                     b.Navigation("Enrollments");
+                });
+
+            modelBuilder.Entity("StarCollege.Models.Subject", b =>
+                {
+                    b.Navigation("Courses");
                 });
 
             modelBuilder.Entity("StarCollege.Models.Teacher", b =>
