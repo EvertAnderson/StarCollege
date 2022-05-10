@@ -14,6 +14,6 @@ namespace StarCollege.Models
         public int SubjectId { get; set; }
         public string Name { get; set; }
         public int Credits { get; set; }
-        public ICollection<Classroom> Classrooms { get; set; }
+        public ICollection<Classroom>? Classrooms { get; set; }
     }
 }

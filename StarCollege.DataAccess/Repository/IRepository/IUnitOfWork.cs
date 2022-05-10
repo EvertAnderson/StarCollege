@@ -9,7 +9,11 @@ namespace StarCollege.DataAccess.Repository.IRepository
     public interface IUnitOfWork
     {
         ISubjectRepository Subject { get; }
-
+        ICourseRepository Course { get; }
+        IStudentRepository Student { get; }
+        ITeacherRepository Teacher { get; }
+        IClassroomRepository Classroom { get; }
+        IEnrollmentRepository Enrollment { get; }
         void Save();
     }
 }

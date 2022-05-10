@@ -16,8 +16,19 @@ namespace StarCollege.DataAccess.Repository
         {
             _db = db;
             Subject = new SubjectRepository(_db);
+            Course = new CourseRepository(_db);
+            Student = new StudentRepository(_db);
+            Teacher = new TeacherRepository(_db);
+            Classroom = new ClassroomRepository(_db);
+            Enrollment = new EnrollmentRepository(_db);
         }
         public ISubjectRepository Subject { get; private set; }
+        public ICourseRepository Course { get; private set; }
+        public IStudentRepository Student { get; private set; }
+        public ITeacherRepository Teacher { get; private set; }
+        public IClassroomRepository Classroom { get; private set; }
+        public IEnrollmentRepository Enrollment { get; private set; }
+
         public void Save()
         {
             _db.SaveChanges();
