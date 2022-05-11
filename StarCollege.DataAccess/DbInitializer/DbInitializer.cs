@@ -68,7 +68,9 @@ namespace StarCollege.DataAccess.DbInitializer
                         new Teacher { FirstMidName = "Paul",    LastName = "Li",        Title = "Electronic Engineer" },
                         new Teacher { FirstMidName = "Jim",     LastName = "Soto",      Title = "Communication Scientist" },
                         new Teacher { FirstMidName = "Ander",   LastName = "Helu",      Title = "Psicology" },
-                        new Teacher { FirstMidName = "Geloovan",LastName = "Sun",       Title = "Computer Scientist" }
+                        new Teacher { FirstMidName = "Geloovan",LastName = "Sun",       Title = "Computer Scientist" },
+                        new Teacher { FirstMidName = "Jhonny",  LastName = "Bravo",     Title = "Lawyer" },
+                        new Teacher { FirstMidName = "Courage", LastName = "Stone",     Title = "Medicine" }
                     };
 
                     foreach (var item in teachers)
@@ -84,6 +86,10 @@ namespace StarCollege.DataAccess.DbInitializer
                         new Subject { Name = "Administration", Department = "Business" },
                         new Subject { Name = "Sounds", Department = "Music" },
                         new Subject { Name = "Painting", Department = "Arts" },
+                        new Subject { Name = "Penal Code", Department = "Laws" },
+                        new Subject { Name = "Civil Rights", Department = "Laws" },
+                        new Subject { Name = "General Medicine", Department = "Medicine" },
+                        new Subject { Name = "Pediatry", Department = "Medicine" },
                     };
 
                     foreach (var item in subjects)
@@ -109,11 +115,73 @@ namespace StarCollege.DataAccess.DbInitializer
                         new Course { Name = "Contemporary Painting", Credits = 2, SubjectId = 5 },
                         new Course { Name = "Street Painting", Credits = 3, SubjectId = 5 },
                         new Course { Name = "Professional Painting", Credits = 4, SubjectId = 5 },
+                        new Course { Name = "Crimes Codes", Credits = 3, SubjectId = 6 },
+                        new Course { Name = "Politic Laws", Credits = 4, SubjectId = 7 },
+                        new Course { Name = "Medical Care 1", Credits = 4, SubjectId = 8 },
+                        new Course { Name = "Medical Care 2", Credits = 5, SubjectId = 8 },
+                        new Course { Name = "Kids Health", Credits = 5, SubjectId = 9 },
                     };
 
                     foreach (var item in courses)
                     {
                         _db.Course.Add(item);
+                    }
+                    _db.SaveChanges();
+
+                    var classrooms = new Classroom[]
+                    {
+                        new Classroom { ClassCode = "CAL1A", CourseId = 1, TeacherId = 1 },
+                        new Classroom { ClassCode = "CAL1B", CourseId = 1, TeacherId = 2 },
+                        new Classroom { ClassCode = "CAL1C", CourseId = 1, TeacherId = 3 },
+                        new Classroom { ClassCode = "CAL1D", CourseId = 1, TeacherId = 4 },
+                        new Classroom { ClassCode = "CAL2A", CourseId = 2, TeacherId = 1 },
+                        new Classroom { ClassCode = "CAL2B", CourseId = 2, TeacherId = 2 },
+                        new Classroom { ClassCode = "CAL2C", CourseId = 2, TeacherId = 3 },
+                        new Classroom { ClassCode = "CAL2D", CourseId = 2, TeacherId = 4 },
+                        new Classroom { ClassCode = "CAL3A", CourseId = 3, TeacherId = 1 },
+                        new Classroom { ClassCode = "CAL3B", CourseId = 3, TeacherId = 2 },
+                        new Classroom { ClassCode = "CAL3C", CourseId = 3, TeacherId = 3 },
+                        new Classroom { ClassCode = "CAL3D", CourseId = 3, TeacherId = 4 },
+
+                        new Classroom { ClassCode = "PRO1A", CourseId = 4, TeacherId = 1 },
+                        new Classroom { ClassCode = "PRO1B", CourseId = 4, TeacherId = 2 },
+                        new Classroom { ClassCode = "PRO1C", CourseId = 4, TeacherId = 3 },
+                        new Classroom { ClassCode = "PRO1D", CourseId = 4, TeacherId = 4 },
+                        new Classroom { ClassCode = "PRO2A", CourseId = 5, TeacherId = 1 },
+                        new Classroom { ClassCode = "PRO2B", CourseId = 5, TeacherId = 2 },
+                        new Classroom { ClassCode = "PRO2C", CourseId = 5, TeacherId = 3 },
+                        new Classroom { ClassCode = "PRO2D", CourseId = 5, TeacherId = 4 },
+                        new Classroom { ClassCode = "PRO3A", CourseId = 6, TeacherId = 1 },
+                        new Classroom { ClassCode = "PRO3B", CourseId = 6, TeacherId = 2 },
+                        new Classroom { ClassCode = "PRO3C", CourseId = 6, TeacherId = 3 },
+                        new Classroom { ClassCode = "PRO3D", CourseId = 6, TeacherId = 4 },
+                    };
+
+                    foreach (var item in classrooms)
+                    {
+                        _db.Classroom.Add(item);
+                    }
+                    _db.SaveChanges();
+
+                    var enrollments = new Enrollment[]
+                    {
+                        new Enrollment { StudentId = 1, ClassroomId = 1, Score = 19 },
+                        new Enrollment { StudentId = 1, ClassroomId = 13, Score = 19 },
+                        new Enrollment { StudentId = 2, ClassroomId = 2, Score = 19 },
+                        new Enrollment { StudentId = 2, ClassroomId = 14, Score = 19 },
+                        new Enrollment { StudentId = 3, ClassroomId = 3, Score = 19 },
+                        new Enrollment { StudentId = 3, ClassroomId = 15, Score = 19 },
+                        new Enrollment { StudentId = 4, ClassroomId = 4, Score = 19 },
+                        new Enrollment { StudentId = 4, ClassroomId = 16, Score = 19 },
+                        new Enrollment { StudentId = 5, ClassroomId = 5, Score = 19 },
+                        new Enrollment { StudentId = 5, ClassroomId = 17, Score = 19 },
+                        new Enrollment { StudentId = 6, ClassroomId = 6, Score = 19 },
+                        new Enrollment { StudentId = 6, ClassroomId = 18, Score = 19 },
+                    };
+
+                    foreach (var item in enrollments)
+                    {
+                        _db.Enrollment.Add(item);
                     }
                     _db.SaveChanges();
                 }
