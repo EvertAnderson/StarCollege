@@ -1,0 +1,129 @@
+﻿using StarCollege.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using StarCollege.DataAccess.Data;
+
+namespace StarCollege.DataAccess.DbInitializer
+{
+    public class DbInitializer : IDbInitializer
+    {
+        private readonly ApplicationDbContext _db;
+
+        public DbInitializer(ApplicationDbContext db)
+        {
+            _db = db;
+        }
+
+        public void Initialize()
+        {
+            bool containsStudent = _db.Student.Any();
+            bool containsTeacher = _db.Teacher.Any();
+            bool cotainSubject = _db.Subject.Any();
+            bool containsCourse = _db.Course.Any();
+            bool containsEnrollment = _db.Enrollment.Any();
+            bool containsClassroom = _db.Classroom.Any();
+            //migrations if they are not applied
+            try
+            {
+                if (_db.Database.GetPendingMigrations().Count() > 0)
+                {
+                    _db.Database.Migrate();
+                }
+
+                if (!containsStudent && !containsTeacher && !cotainSubject && !containsCourse && !containsEnrollment && !containsClassroom)
+                {
+                    if (_db.Student.Any())
+                    {
+                        return;   // DB has been seeded
+                    }
+
+                    var students = new Student[]
+                    {
+                        new Student { FirstMidName = "Carson",   LastName = "Alexanders" },
+                        new Student { FirstMidName = "Meredith", LastName = "Alons" },
+                        new Student { FirstMidName = "Arturo",   LastName = "Anander" },
+                        new Student { FirstMidName = "Gytis",    LastName = "Barzdukas" },
+                        new Student { FirstMidName = "Yan",      LastName = "Li" },
+                        new Student { FirstMidName = "Peggy",    LastName = "Justice" },
+                        new Student { FirstMidName = "Laura",    LastName = "Norman" },
+                        new Student { FirstMidName = "Lovel",    LastName = "Olivetto" }
+                    };
+
+                    foreach (var item in students)
+                    {
+                        _db.Student.Add(item);
+                    }
+                    _db.SaveChanges();
+
+                    var teachers = new Teacher[]
+                    {
+                        new Teacher { FirstMidName = "Karen",   LastName = "Reiner",    Title = "Software Engineer" },
+                        new Teacher { FirstMidName = "Diana",   LastName = "Kazama",    Title = "Civil Engineer" },
+                        new Teacher { FirstMidName = "Kevin",   LastName = "Mishima",   Title = "Industrial Engineer" },
+                        new Teacher { FirstMidName = "Bryan",   LastName = "Orleans",   Title = "System Information Engineer" },
+                        new Teacher { FirstMidName = "Paul",    LastName = "Li",        Title = "Electronic Engineer" },
+                        new Teacher { FirstMidName = "Jim",     LastName = "Soto",      Title = "Communication Scientist" },
+                        new Teacher { FirstMidName = "Ander",   LastName = "Helu",      Title = "Psicology" },
+                        new Teacher { FirstMidName = "Geloovan",LastName = "Sun",       Title = "Computer Scientist" }
+                    };
+
+                    foreach (var item in teachers)
+                    {
+                        _db.Teacher.Add(item);
+                    }
+                    _db.SaveChanges();
+
+                    var subjects = new Subject[]
+                    {
+                        new Subject { Name = "Maths", Department = "Mathematics" },
+                        new Subject { Name = "Programming", Department = "Engineering" },
+                        new Subject { Name = "Administration", Department = "Business" },
+                        new Subject { Name = "Sounds", Department = "Music" },
+                        new Subject { Name = "Painting", Department = "Arts" },
+                    };
+
+                    foreach (var item in subjects)
+                    {
+                        _db.Subject.Add(item);
+                    }
+                    _db.SaveChanges();
+
+                    var courses = new Course[]
+                    {
+                        new Course { Name = "Calculus 1", Credits = 5, SubjectId = 1 },
+                        new Course { Name = "Calculus 2", Credits = 4, SubjectId = 1 },
+                        new Course { Name = "Calculus 3", Credits = 5, SubjectId = 1 },
+                        new Course { Name = "Programming 1", Credits = 5, SubjectId = 2 },
+                        new Course { Name = "Programming 2", Credits = 5, SubjectId = 2 },
+                        new Course { Name = "Data Structures", Credits = 4, SubjectId = 2 },
+                        new Course { Name = "International Business 1", Credits = 3, SubjectId = 2 },
+                        new Course { Name = "International Business 2", Credits = 4, SubjectId = 2 },
+                        new Course { Name = "International Business 3", Credits = 5, SubjectId = 2 },
+                        new Course { Name = "Guitar", Credits = 3, SubjectId = 4 },
+                        new Course { Name = "Battery", Credits = 3, SubjectId = 4 },
+                        new Course { Name = "Trumpet", Credits = 4, SubjectId = 4 },
+                        new Course { Name = "Contemporary Painting", Credits = 2, SubjectId = 5 },
+                        new Course { Name = "Street Painting", Credits = 3, SubjectId = 5 },
+                        new Course { Name = "Professional Painting", Credits = 4, SubjectId = 5 },
+                    };
+
+                    foreach (var item in courses)
+                    {
+                        _db.Course.Add(item);
+                    }
+                    _db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return;
+        }
+    }
+}

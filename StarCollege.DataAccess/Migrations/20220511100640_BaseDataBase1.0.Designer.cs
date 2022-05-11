@@ -11,7 +11,7 @@ using StarCollege.DataAccess.Data;
 namespace StarCollege.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220511002255_BaseDataBase1.0")]
+    [Migration("20220511100640_BaseDataBase1.0")]
     partial class BaseDataBase10
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -176,17 +176,21 @@ namespace StarCollege.DataAccess.Migrations
 
             modelBuilder.Entity("StarCollege.Models.Classroom", b =>
                 {
-                    b.HasOne("StarCollege.Models.Course", null)
+                    b.HasOne("StarCollege.Models.Course", "Course")
                         .WithMany("Classrooms")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StarCollege.Models.Teacher", null)
+                    b.HasOne("StarCollege.Models.Teacher", "Teacher")
                         .WithMany("Classrooms")
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Teacher");
                 });
 
             modelBuilder.Entity("StarCollege.Models.Course", b =>
@@ -200,17 +204,21 @@ namespace StarCollege.DataAccess.Migrations
 
             modelBuilder.Entity("StarCollege.Models.Enrollment", b =>
                 {
-                    b.HasOne("StarCollege.Models.Classroom", null)
+                    b.HasOne("StarCollege.Models.Classroom", "Classroom")
                         .WithMany("Enrollments")
                         .HasForeignKey("ClassroomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StarCollege.Models.Student", null)
+                    b.HasOne("StarCollege.Models.Student", "Student")
                         .WithMany("Enrollments")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Classroom");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("StarCollege.Models.Classroom", b =>
