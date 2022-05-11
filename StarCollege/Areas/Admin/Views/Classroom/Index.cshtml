@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Course>
+﻿@model IEnumerable<Classroom>
 @{
     ViewData["Title"] = "Index";
 }
@@ -6,11 +6,11 @@
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
-            <h2 class="text-primary">Course List</h2>
+            <h2 class="text-primary">Classroom List</h2>
 		</div>
         <div class="col-6 text-end">
-            <a asp-controller="Course" asp-action="CreateUpdate" class="btn btn-primary">
-               <i class="bi bi-plus-circle"></i> &nbsp; Create New Course
+            <a asp-controller="Classroom" asp-action="CreateUpdate" class="btn btn-primary">
+               <i class="bi bi-plus-circle"></i> &nbsp; Create New Classroom
 			</a>
 		</div>
 	</div>
@@ -20,10 +20,13 @@
     <thead>
         <tr>
             <th>
-                Name
+                Teacher
 			</th>
             <th>
-                Department
+                Course
+			</th>
+            <th>
+                ClassCode
 			</th>
             <th></th>
 		</tr>
@@ -32,17 +35,20 @@
         @foreach(var obj in Model)
         {
             <tr>
-                <td width="50%">
-                    @obj.Name
+                <td width="25%">
+                    @obj.Teacher.FullName
 				</td>
-                <td width="30%">
-                    @obj.Credits
+                <td width="25%">
+                    @obj.Course.Name
+				</td>
+                <td width="25%">
+                    @obj.ClassCode
 				</td>
                 <td>
                     <div class="w-75 btn-group" role="group">
-                        <a asp-controller="Course" asp-action="Edit" asp-route-id="@obj.Id"
+                        <a asp-controller="Classroom" asp-action="CreateUpdate" asp-route-id="@obj.Id"
                         class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
-                        <a asp-controller="Course" asp-action="Delete" asp-route-id="@obj.Id"
+                        <a asp-controller="Classroom" asp-action="Delete" asp-route-id="@obj.Id"
                         class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
 					</div>
 				</td>

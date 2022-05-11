@@ -9,6 +9,6 @@ namespace StarCollege.Models
     public class Teacher : Person
     {
         public string Title { get; set; }
-        public ICollection<Classroom> Classrooms { get; set; }
+        public ICollection<Classroom>? Classrooms { get; set; }
     }
 }

@@ -11,7 +11,7 @@ using StarCollege.DataAccess.Data;
 namespace StarCollege.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220510083901_BaseDataBase1.0")]
+    [Migration("20220511002255_BaseDataBase1.0")]
     partial class BaseDataBase10
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

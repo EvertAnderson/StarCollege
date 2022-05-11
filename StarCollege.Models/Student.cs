@@ -9,6 +9,6 @@ namespace StarCollege.Models
 {
     public class Student : Person
     {
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public ICollection<Enrollment>? Enrollments { get; set; }
     }
 }

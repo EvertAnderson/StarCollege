@@ -31,7 +31,7 @@ namespace StarCollege.Areas.Admin.Controllers
         }
 
         // GET: CourseController/Create
-        public IActionResult Create(int? id)
+        public IActionResult CreateUpdate(int? id)
         {
             CourseVM obj = new()
             {
@@ -57,7 +57,7 @@ namespace StarCollege.Areas.Admin.Controllers
         // POST: CourseController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CourseVM obj)
+        public IActionResult CreateUpdate(CourseVM obj)
         {
             if (ModelState.IsValid)
             {
@@ -70,40 +70,7 @@ namespace StarCollege.Areas.Admin.Controllers
                     _unitOfWork.Course.Update(obj.Course);
                 }
                 _unitOfWork.Save();
-                TempData["success"] = "Product created successfully";
-                return RedirectToAction("Index");
-            }
-            return View(obj);
-        }
-
-        // GET: CourseController/Edit/5
-        public IActionResult Edit(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var objFromDbFirst = _unitOfWork.Course.GetFirstOrDefault(u => u.Id == id);
-
-            if (objFromDbFirst == null) return NotFound();
-
-            return View(objFromDbFirst);
-        }
-
-        // POST: CourseController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(Course obj)
-        {
-            var errors = ModelState
-            .Where(x => x.Value.Errors.Count > 0)
-            .Select(x => new { x.Key, x.Value.Errors })
-            .ToArray();
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Course.Update(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Course updated successfully";
+                TempData["success"] = "Course created successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);

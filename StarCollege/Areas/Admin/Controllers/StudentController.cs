@@ -6,79 +6,79 @@ using StarCollege.Models;
 namespace StarCollege.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class SubjectController : Controller
+    public class StudentController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public SubjectController(IUnitOfWork unitOfWork)
+        public StudentController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        // GET: SubjectController
+        // GET: StudentController
         public IActionResult Index()
         {
-            IEnumerable<Subject> objSubjectList = _unitOfWork.Subject.GetAll();
-            return View(objSubjectList);
+            IEnumerable<Student> objStudentList = _unitOfWork.Student.GetAll();
+            return View(objStudentList);
         }
 
-        // GET: SubjectController/Details/5
+        // GET: StudentController/Details/5
         public IActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: SubjectController/Create
+        // GET: StudentController/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: SubjectController/Create
+        // POST: StudentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Subject obj)
+        public IActionResult Create(Student obj)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Subject.Add(obj);
+                _unitOfWork.Student.Add(obj);
                 _unitOfWork.Save();
-                TempData["success"] = "Subject created successfully";
+                TempData["success"] = "Student created successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
         }
 
-        // GET: SubjectController/Edit/5
+        // GET: StudentController/Edit/5
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-            var objFromDbFirst = _unitOfWork.Subject.GetFirstOrDefault(u => u.Id == id);
+            var objFromDbFirst = _unitOfWork.Student.GetFirstOrDefault(u => u.Id == id);
 
             if (objFromDbFirst == null) return NotFound();
 
             return View(objFromDbFirst);
         }
 
-        // POST: SubjectController/Edit/5
+        // POST: StudentController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Subject obj)
+        public IActionResult Edit(Student obj)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Subject.Update(obj);
+                _unitOfWork.Student.Update(obj);
                 _unitOfWork.Save();
-                TempData["success"] = "Subject updated successfully";
+                TempData["success"] = "Student updated successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
         }
 
-        // GET: SubjectController/Delete/5
+        // GET: StudentController/Delete/5
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
@@ -86,7 +86,7 @@ namespace StarCollege.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var objFromDbFirst = _unitOfWork.Subject.GetFirstOrDefault(u => u.Id == id);
+            var objFromDbFirst = _unitOfWork.Student.GetFirstOrDefault(u => u.Id == id);
 
             if (objFromDbFirst == null)
             {
@@ -96,20 +96,20 @@ namespace StarCollege.Areas.Admin.Controllers
             return View(objFromDbFirst);
         }
 
-        // POST: SubjectController/Delete/5
+        // POST: StudentController/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
-            var obj = _unitOfWork.Subject.GetFirstOrDefault(u => u.Id == id);
+            var obj = _unitOfWork.Student.GetFirstOrDefault(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
 
-            _unitOfWork.Subject.Remove(obj);
+            _unitOfWork.Student.Remove(obj);
             _unitOfWork.Save();
-            TempData["success"] = "Subject deleted successfully";
+            TempData["success"] = "Student deleted successfully";
             return RedirectToAction("Index");
         }
     }

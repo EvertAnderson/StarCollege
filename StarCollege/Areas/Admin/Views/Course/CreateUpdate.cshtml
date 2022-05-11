@@ -3,7 +3,7 @@
 <form method="post">
 	<div class="border p-3 mt-4">
 		<div class="row pb-2">
-			<h2 class="text-primary">Create Course</h2>
+			<h2 class="text-primary">@(Model.Course.Id != 0 ? "Edit" : "Create") Course</h2>
 			<hr />
 		</div>
 		<div class="mb-3">
@@ -19,12 +19,12 @@
 		<div class="mb-3 col-6">
 			<label asp-for="Course.SubjectId"></label>
 			<select asp-for="Course.SubjectId" asp-items="@Model.SubjectList" class="form-select">
-				<option disabled selected>--Select Subject--</option>
+				@*<option disabled selected>--Select Subject--</option>*@
 			</select>
 			<span asp-validation-for="Course.SubjectId" class="text-danger"></span>
 		</div>
 
-		<button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+		<button type="submit" class="btn btn-primary" style="width:150px">@(Model.Course.Id != 0 ? "Update" : "Create")</button>
 		<a asp-controller="Course" asp-action="Index" class="btn btn-secondary" style="width:150px">
 			Back to List
 		</a>

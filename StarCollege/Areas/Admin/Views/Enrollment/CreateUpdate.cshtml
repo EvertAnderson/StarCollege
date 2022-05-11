@@ -1,0 +1,34 @@
+﻿@model StarCollege.Models.ViewModels.EnrollmentVM
+
+<form method="post">
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary">@(Model.Enrollment.Id != 0 ? "Edit" : "Create") Enrollment</h2>
+			<hr />
+		</div>
+		<div class="mb-3">
+			<label asp-for="Enrollment.Score"></label>
+			<input asp-for="Enrollment.Score" class="form-control" />
+			<span asp-validation-for="Enrollment.Score" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-6">
+			<label asp-for="Enrollment.StudentId"></label>
+			<select asp-for="Enrollment.StudentId" asp-items="@Model.StudentList" class="form-select">
+				@*<option disabled selected>--Select Subject--</option>*@
+			</select>
+			<span asp-validation-for="Enrollment.StudentId" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-6">
+			<label asp-for="Enrollment.ClassroomId"></label>
+			<select asp-for="Enrollment.ClassroomId" asp-items="@Model.ClassroomList" class="form-select">
+				@*<option disabled selected>--Select Subject--</option>*@
+			</select>
+			<span asp-validation-for="Enrollment.ClassroomId" class="text-danger"></span>
+		</div>
+
+		<button type="submit" class="btn btn-primary" style="width:150px">@(Model.Enrollment.Id != 0 ? "Update" : "Create")</button>
+		<a asp-controller="Enrollment" asp-action="Index" class="btn btn-secondary" style="width:150px">
+			Back to List
+		</a>
+	</div>
+</form>
