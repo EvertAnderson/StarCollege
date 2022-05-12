@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,6 +15,6 @@ namespace StarCollege.Models
         public int SubjectId { get; set; }
         public string Name { get; set; }
         public int Credits { get; set; }
-        public ICollection<Classroom>? Classrooms { get; set; }
+        public IEnumerable<Classroom>? Classrooms { get; set; }
     }
 }

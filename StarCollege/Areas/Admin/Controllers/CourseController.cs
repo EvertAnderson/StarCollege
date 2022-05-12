@@ -20,14 +20,16 @@ namespace StarCollege.Areas.Admin.Controllers
         // GET: CourseController
         public IActionResult Index()
         {
-            IEnumerable<Course> objCourseList = _unitOfWork.Course.GetAll();
+            IEnumerable<Course> objCourseList = _unitOfWork.Course.GetAll(includeProperties: "Classrooms");
+
             return View(objCourseList);
         }
 
         // GET: CourseController/Details/5
         public IActionResult Details(int id)
         {
-            return View();
+            Course obj = _unitOfWork.Course.GetFirstOrDefault(x => x.Id == id);
+            return View(obj);
         }
 
         // GET: CourseController/Create
@@ -51,7 +53,7 @@ namespace StarCollege.Areas.Admin.Controllers
             {
                 obj.Course = _unitOfWork.Course.GetFirstOrDefault(x => x.Id == id);
                 return View(obj);
-            }                                                                                                                                                                                                                 
+            }
         }
 
         // POST: CourseController/Create

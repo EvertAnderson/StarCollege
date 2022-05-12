@@ -22,6 +22,6 @@ namespace StarCollege.Models
         [ValidateNever]
         public Teacher Teacher { get; set; }
         public string ClassCode { get; set; }
-        public ICollection<Enrollment>? Enrollments { get; set; }
+        public IEnumerable<Enrollment>? Enrollments { get; set; }
     }
 }
